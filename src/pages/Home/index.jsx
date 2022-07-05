@@ -6,6 +6,7 @@ export function Home() {
 
   const [studentName, setStudentName] = useState('Seu nome ...'); // Primeira posicao o estado e o segundo a funcao que atualiza esse estado
   const [students, setStudents] = useState([]);
+  const [user, setUser] = useState({ name: '', avatar: '' })
 
   function handleAddStudent() {
     const newStudent = {
@@ -22,6 +23,15 @@ export function Home() {
   useEffect(() => {
     // Corpo do useEffect
     console.log("useEffect foi chamado")
+    fetch('https://api.github.com/users/Eduardo-Luizz')
+    .then((response) => response.json())
+    .then(data => {
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url
+      })
+    })
+    .catch((error) => console.log(error))
   },[]); // [estados que o useEffect depende]
 
   return (
@@ -29,8 +39,8 @@ export function Home() {
     <header>
     <h1>Lista de presença</h1>
     <div>
-      <strong>Eduardo</strong>
-      <img src="https://github.com/Eduardo-Luizz.png" alt="Foto de perfil"></img>
+      <strong>{user.name}</strong>
+      <img src={user.avatar} alt="Foto de perfil"></img>
     </div>
     </header>
     
