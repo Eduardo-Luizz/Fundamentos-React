@@ -1,6 +1,6 @@
 import './style.css'
 import { Card } from '../../components/card'
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // Isso é hook, comeca com use, hook sao funcoes que permite conectar os recursos de estado e ciclo de vida do react apartir de componentes
 
 export function Home() {
 
