@@ -1,6 +1,6 @@
 import './style.css'
 import { Card } from '../../components/card'
-import React, { useState } from 'react'; // Isso é hook, comeca com use, hook sao funcoes que permite conectar os recursos de estado e ciclo de vida do react apartir de componentes
+import React, { useState, useEffect } from 'react'; // Isso é hook, comeca com use, hook sao funcoes que permite conectar os recursos de estado e ciclo de vida do react apartir de componentes
 
 export function Home() {
 
@@ -18,6 +18,11 @@ export function Home() {
     }
     setStudents( estadoAnterior => [...estadoAnterior, newStudent]);
   };
+
+  useEffect(() => {
+    // Corpo do useEffect
+    console.log("useEffect foi chamado")
+  },[]); // [estados que o useEffect depende]
 
   return (
     <div className="container">
