@@ -5,10 +5,23 @@ import React, { useState } from 'react';
 export function Home() {
 
   const [studentName, setStudentName] = useState('Seu nome ...'); // Primeira posicao o estado e o segundo a funcao que atualiza esse estado
+  const [students, setStudents] = useState([]);
+
+  function handleAddStudent() {
+    const newStudent = {
+      name: studentName,
+      time: new Date().toLocaleTimeString("pt-br", {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      }),
+    }
+    setStudents( estadoAnterior => [...estadoAnterior, newStudent]);
+  };
 
   return (
     <div className="container">
-    <h1>Nome: { studentName }</h1>
+    <h1>Lista de presença</h1>
     
     <input 
       type="text" 
@@ -17,10 +30,11 @@ export function Home() {
     />
 
 
-    <button type="button">Adicionar</button>
+    <button type="button" onClick={handleAddStudent}>Adicionar</button>
 
-    <Card name="Eduardo" time="10:55:30"></Card>
-    <Card name="João" time="00:55:05"></Card>
+    {
+      students.map(student => <Card name={student.name} time={student.time}></Card>)
+    }
     </div>
   )
 }
