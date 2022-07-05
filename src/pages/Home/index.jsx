@@ -21,8 +21,20 @@ export function Home() {
   };
 
   useEffect(() => {
+
+    /* useEffect async
+    async function fetchData() {
+      const response = await fetch('https://api.github.com/users/Eduardo-Luizz')
+      const data = await response.json(); 
+        setUser({
+        name: data.name,
+        avatar: data.avatar_url
+      })
+      fetchData();
+    }
+    */
+
     // Corpo do useEffect
-    console.log("useEffect foi chamado")
     fetch('https://api.github.com/users/Eduardo-Luizz')
     .then((response) => response.json())
     .then(data => {
